@@ -60,7 +60,7 @@ Once running, visit http://localhost:8000/docs for interactive API docs.
 
 ## 📁 Project Structure
 
-```plaintext
+
 backend/
 ├── app.py                # Main FastAPI application
 ├── auth.py               # Authentication and user management
@@ -69,7 +69,7 @@ backend/
 ├── models_cache/         # Cached NLP models (optional)
 ├── data/                 # SQLite database files
 └── README.md             
- ```
+ 
 
  # 📄 Doc-Vid-Analyze Frontend
 
