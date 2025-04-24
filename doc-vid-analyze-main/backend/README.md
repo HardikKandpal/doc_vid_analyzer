@@ -60,16 +60,14 @@ Once running, visit http://localhost:8000/docs for interactive API docs.
 
 ## 📁 Project Structure
 
+- **app.py**: Entry point for the FastAPI app.
+- **auth.py**: Handles authentication logic and user-related endpoints.
+- **paypal_integration.py**: Contains logic for handling PayPal subscriptions and webhooks.
+- **requirements.txt**: Lists all required Python packages for the backend.
+- **models_cache/**: Directory to store preloaded or cached NLP models (optional use).
+- **data/**: Contains the SQLite database or related files.
 
-backend/
-├── app.py                # Main FastAPI application
-├── auth.py               # Authentication and user management
-├── paypal_integration.py # PayPal subscription integration
-├── requirements.txt      # Python dependencies
-├── models_cache/         # Cached NLP models (optional)
-├── data/                 # SQLite database files
-└── README.md             
- 
+           
 
  # 📄 Doc-Vid-Analyze Frontend
 
@@ -151,15 +149,13 @@ Make sure the backend is running and accessible at the URL specified in src/conf
 
 ## Project Structure
 
-frontend/
-├── public/              # Static files
-├── src/                 # Source code
-│   ├── components/      # Reusable UI components
-│   ├── pages/           # Page components
-│   ├── services/        # API services
-│   ├── config.js        # Configuration
-│   └── App.js           # Main application component
-└── README.md            # This file
+- **public/**: Contains static assets like `index.html`, images, and other publicly accessible files.
+- **src/**: The main source folder for the React frontend.
+  - **components/**: Houses reusable UI components like buttons, headers, etc.
+  - **pages/**: Defines route-level components (e.g., Home, Login).
+  - **services/**: Contains API call logic and integration with backend endpoints.
+  - **config.js**: Centralized configuration settings (e.g., base API URL).
+  - **App.js**: Root component that sets up routing and global context.
 
 
 ## Usage
