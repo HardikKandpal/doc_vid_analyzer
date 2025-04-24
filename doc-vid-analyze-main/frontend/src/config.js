@@ -1,5 +1,5 @@
 // API configuration
-export const API_BASE_URL = process.env.REACT_APP_API_URL || "http://localhost:8500";
+export const API_BASE_URL = process.env.REACT_APP_API_URL || "https://huggingface.co/spaces/hardik8588/doc_analyzer";
 // Other configuration options
 export const APP_NAME = "Legal Document & Video Analyzer";
 export const DEFAULT_TIMEOUT = 30000; // 30 seconds
