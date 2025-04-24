@@ -114,7 +114,7 @@ This is the frontend for the AI-powered Legal Document & Video Analyzer project.
    ```bash
    git clone https://github.com/HardikKandpal/doc_vid_analyzer.git
     cd doc-vid-analyze-main/frontend
- ```
+   ```
 
 2. **Install dependencies** :
 
@@ -130,7 +130,7 @@ This is the frontend for the AI-powered Legal Document & Video Analyzer project.
    
    ```bash
    npm start
-    ```
+   ```
 5. Build for production :
    
    ```bash
@@ -150,7 +150,7 @@ This frontend connects to a FastAPI backend that provides the following services
 Make sure the backend is running and accessible at the URL specified in src/config.js .
 
 ## Project Structure
-```plaintext
+
 frontend/
 ├── public/              # Static files
 ├── src/                 # Source code
@@ -160,7 +160,7 @@ frontend/
 │   ├── config.js        # Configuration
 │   └── App.js           # Main application component
 └── README.md            # This file
- ```
+
 
 ## Usage
 1. Document Analysis :
