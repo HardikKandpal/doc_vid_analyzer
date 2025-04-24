@@ -90,6 +90,4 @@ frontend/
 
 MIT License © 2025. Free to use and modify for research and non-commercial projects.
 
-## Credits
 
-Developed by Tejash Pandey
