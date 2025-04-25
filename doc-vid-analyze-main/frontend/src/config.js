@@ -1,6 +1,6 @@
 // API configuration
-export const API_BASE_URL =  "https://hardik8588-doc-analyzer.hf.space" || process.env.REACT_APP_API_URL ;
-// Other configuration options
+export const API_BASE_URL = process.env.REACT_APP_API_URL || "https://hardik8588-doc-analyzer.hf.space";
+// // Other configuration options
 export const APP_NAME = "Legal Document & Video Analyzer";
 export const DEFAULT_TIMEOUT = 30000; // 30 seconds
 // API endpoints
@@ -13,7 +13,7 @@ export const API_ENDPOINTS = {
   HEALTH: `${API_BASE_URL}/health`,
   
   // Subscription endpoints
-  CREATE_SUBSCRIPTION: `${API_BASE_URL}/create_subscription`,
+  CREATE_SUBSCRIPTION: `${API_BASE_URL}/subscription/create`,
   GET_USER_SUBSCRIPTION: `${API_BASE_URL}/users/me/subscription`,
   SUBSCRIBE: `${API_BASE_URL}/subscribe`,
   VERIFY_SUBSCRIPTION: `${API_BASE_URL}/subscription/verify`,
