@@ -1,9 +1,8 @@
 // API configuration
-export const API_BASE_URL = process.env.REACT_APP_API_URL || "https://huggingface.co/spaces/hardik8588/doc_analyzer";
+export const API_BASE_URL =  "https://hardik8588-doc-analyzer.hf.space" || process.env.REACT_APP_API_URL ;
 // Other configuration options
 export const APP_NAME = "Legal Document & Video Analyzer";
 export const DEFAULT_TIMEOUT = 30000; // 30 seconds
-
 // API endpoints
 export const API_ENDPOINTS = {
   REGISTER: `${API_BASE_URL}/register`,
