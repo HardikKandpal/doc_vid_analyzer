@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { API_BASE_URL, API_ENDPOINTS } from 'doc-vid-analyze-main/frontend/src/config.js';
+import { API_BASE_URL, API_ENDPOINTS } from '../config.js';
 
 
 // Create an axios instance with the base URL
