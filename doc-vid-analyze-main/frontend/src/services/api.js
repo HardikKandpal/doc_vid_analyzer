@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { API_BASE_URL, API_ENDPOINTS } from '../config.js';
+console.log("Using API_BASE_URL:", API_BASE_URL);
 
 
 // Create an axios instance with the base URL
