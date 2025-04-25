@@ -58,9 +58,7 @@ const ApiService = {
   // Verify a subscription after payment
   verifySubscription: async (subscriptionId) => {
     try {
-      const response = await api.post(`/subscription/verify`, {
-        subscription_id: subscriptionId
-      });
+      const response = await api.get(`/subscription/verify/${subscriptionId}`);
       return response.data;
     } catch (error) {
       console.error('Error verifying subscription:', error);
