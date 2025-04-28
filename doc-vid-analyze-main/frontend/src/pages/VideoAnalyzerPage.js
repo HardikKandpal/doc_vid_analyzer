@@ -222,19 +222,6 @@ const VideoAnalyzerPage = () => {
         </Alert>
       )}
 
-      {transcript && (
-        <Box sx={{ mt: 4 }}>
-          <Typography variant="h6" gutterBottom sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-            📝 Video Transcript
-          </Typography>
-          <Paper sx={{ p: 3 }}>
-            <Typography variant="body1">
-              {transcript}
-            </Typography>
-          </Paper>
-        </Box>
-      )}
-
       {isLoading && (
         <Box sx={{ display: 'flex', justifyContent: 'center', my: 4 }}>
           <CircularProgress />
