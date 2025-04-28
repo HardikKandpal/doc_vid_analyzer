@@ -87,11 +87,23 @@ const VideoAnalyzerPage = () => {
     setUploadSuccess(true);
     setAnalyzing(true);
 
-    // Simulate analysis (replace with actual API call)
-    setTimeout(() => {
-      setTranscript('In the courtroom, in the court. The case may also be heard in front of a jury. These are 12 members of the public who have been selected at random from the electoral role. They won\'t know you or the accused. Their job is to hear all the evidence and decide beyond reasonable doubt if the person is guilty or not. In the middle of the courtroom, it\'s the bar table. This is where the Crown Prosecutor and the Defence Team sit.');
-      setAnalyzing(false);
-    }, 2000);
+    // REMOVE THIS SIMULATION:
+    // setTimeout(() => {
+    //   setTranscript('In the courtroom, ...');
+    //   setAnalyzing(false);
+    // }, 2000);
+    
+    // INSTEAD, CALL THE BACKEND:
+    ApiService.analyzeVideo(selectedFile)
+      .then(response => {
+        setResult(response);
+        setTranscript(response.transcript || '');
+        setAnalyzing(false);
+      })
+      .catch(error => {
+        setError('An error occurred while analyzing the video. Please try again.');
+        setAnalyzing(false);
+      });
   };
 
   const handleBrowseClick = () => {
@@ -379,4 +391,4 @@ const VideoAnalyzerPage = () => {
   );
 };
 
-export default VideoAnalyzerPage; 
+export default VideoAnalyzerPage;
