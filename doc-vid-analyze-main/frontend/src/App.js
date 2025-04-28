@@ -23,6 +23,7 @@ import LegalChatbotPage from './pages/LegalChatbotPage';
 import Auth from './pages/Auth';
 import Subscription from './pages/Subscription';
 import SubscriptionCallback from './pages/SubscriptionCallback';
+import VideoChatbotPage from './pages/VideoChatbotPage';
 
 // Services
 import ApiService from './services/api';
@@ -143,6 +144,17 @@ function AnimatedRoutes({ userInfo, isAuthenticated, showNotification }) {
             <ProtectedRoute>
               <motion.div {...pageTransition}>
                 <VideoAnalyzerPage showNotification={showNotification} />
+              </motion.div>
+            </ProtectedRoute>
+          } 
+        />
+        
+        <Route 
+          path="/video-chatbot" 
+          element={
+            <ProtectedRoute>
+              <motion.div {...pageTransition}>
+                <VideoChatbotPage showNotification={showNotification} />
               </motion.div>
             </ProtectedRoute>
           } 
