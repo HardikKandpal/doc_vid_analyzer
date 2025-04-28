@@ -112,6 +112,49 @@ const ApiService = {
     }
   },
   
+  // Analyze a legal video
+  analyzeVideo: async (file) => {
+    const formData = new FormData();
+    formData.append('file', file);
+
+    try {
+      const response = await api.post('/analyze_legal_video', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      });
+      return response.data;
+    } catch (error) {
+      console.error('Error analyzing video:', error);
+
+      // Handle subscription-related errors specifically
+      if (error.response) {
+        if (error.response.status === 403) {
+          return {
+            success: false,
+            error: error.response.data.detail || 'This feature requires a subscription upgrade.',
+            requiresUpgrade: true
+          };
+        } else if (error.response.status === 500) {
+          const errorDetail = error.response.data?.detail || '';
+          if (errorDetail.includes('subscription') || errorDetail.includes('tier')) {
+            return {
+              success: false,
+              error: errorDetail,
+              requiresUpgrade: true
+            };
+          }
+        }
+      }
+
+      // Generic error handling
+      return {
+        success: false,
+        error: error.response?.data?.detail || 'Failed to analyze video'
+      };
+    }
+  },
+  
   // ADD THIS FUNCTION:
   legalChatbot: async (question, taskId) => {
     try {
