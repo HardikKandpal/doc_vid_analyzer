@@ -63,7 +63,7 @@ const LegalChatbotPage = () => {
       // Add AI response to chat history
       setChatHistory(prev => [
         ...prev,
-        { role: 'assistant', content: response.response }
+        { role: 'assistant', content: response.answer }
       ]);
       
       // Clear the query input
