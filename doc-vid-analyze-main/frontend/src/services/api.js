@@ -1,6 +1,5 @@
 import axios from 'axios';
-import { API_BASE_URL, API_ENDPOINTS } from '../config.js';
-console.log("Using API_BASE_URL:", API_BASE_URL);
+import { API_BASE_URL, API_ENDPOINTS } from '../config';
 
 
 // Create an axios instance with the base URL
@@ -58,7 +57,9 @@ const ApiService = {
   // Verify a subscription after payment
   verifySubscription: async (subscriptionId) => {
     try {
-      const response = await api.get(`/subscription/verify/${subscriptionId}`);
+      const response = await api.post(`/subscription/verify`, {
+        subscription_id: subscriptionId
+      });
       return response.data;
     } catch (error) {
       console.error('Error verifying subscription:', error);
@@ -108,6 +109,24 @@ const ApiService = {
         success: false,
         error: error.response?.data?.detail || 'Failed to analyze document'
       };
+    }
+  },
+  
+  // ADD THIS FUNCTION:
+  legalChatbot: async (question, taskId) => {
+    try {
+      const formData = new FormData();
+      formData.append('question', question);
+
+      const response = await api.post(`/legal_chatbot/${taskId}`, formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      });
+      return response.data;
+    } catch (error) {
+      console.error('Error getting chatbot response:', error);
+      throw error;
     }
   }
 };
