@@ -171,6 +171,21 @@ const ApiService = {
       console.error('Error getting chatbot response:', error);
       throw error;
     }
+  },
+  
+  // Visualization endpoints (return image URLs for <img> tags)
+  getRiskChartUrl: () => `${API_BASE_URL}/download_risk_chart`,
+  getRiskPieChartUrl: () => `${API_BASE_URL}/download_risk_pie_chart`,
+  getRiskRadarChartUrl: () => `${API_BASE_URL}/download_risk_radar_chart`,
+  getRiskTrendChartUrl: () => `${API_BASE_URL}/download_risk_trend_chart`,
+  getInteractiveRiskChartHtml: async () => {
+    try {
+      const response = await api.get('/interactive_risk_chart');
+      return response.data; // This is HTML
+    } catch (error) {
+      console.error('Error fetching interactive chart:', error);
+      return '<div>Error loading chart</div>';
+    }
   }
 };
 
