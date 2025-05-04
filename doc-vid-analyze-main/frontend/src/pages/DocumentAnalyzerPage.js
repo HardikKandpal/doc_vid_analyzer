@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Box,
   Typography,
@@ -30,7 +30,6 @@ import WarningIcon from '@mui/icons-material/Warning';
 import AssessmentIcon from '@mui/icons-material/Assessment';
 import SummarizeIcon from '@mui/icons-material/Summarize';
 import ApiService from '../services/api';
-import { API_ENDPOINTS } from '../config';
 
 const DocumentAnalyzerPage = () => {
   const [file, setFile] = useState(null);
@@ -40,6 +39,21 @@ const DocumentAnalyzerPage = () => {
   const [result, setResult] = useState(null);
   const [tabValue, setTabValue] = useState(0);
   const [chartType, setChartType] = useState('bar');
+  const [chartHtml, setChartHtml] = useState('');
+
+  const chartTypeOptions = [
+    { value: 'bar', label: 'Bar Chart' },
+    { value: 'pie', label: 'Pie Chart' },
+    { value: 'radar', label: 'Radar Chart' },
+    { value: 'trend', label: 'Trend Chart' },
+    { value: 'interactive', label: 'Interactive Chart' }
+  ];
+
+  useEffect(() => {
+    if (chartType === 'interactive' && result) {
+      ApiService.getInteractiveRiskChartHtml().then(setChartHtml);
+    }
+  }, [chartType, result]);
 
   const handleFileChange = (event) => {
     const selectedFile = event.target.files[0];
@@ -295,27 +309,45 @@ const DocumentAnalyzerPage = () => {
                         label="Chart Type"
                         onChange={handleChartTypeChange}
                       >
-                        <MenuItem value="bar">Bar Chart</MenuItem>
-                        <MenuItem value="pie">Pie Chart</MenuItem>
-                        <MenuItem value="radar">Radar Chart</MenuItem>
-                        <MenuItem value="trend">Trend Chart</MenuItem>
+                        {chartTypeOptions.map(opt => (
+                          <MenuItem key={opt.value} value={opt.value}>{opt.label}</MenuItem>
+                        ))}
                       </Select>
                     </FormControl>
                     
                     <Box sx={{ textAlign: 'center', mt: 2 }}>
-                      {chartType === 'interactive' ? (
-                        <iframe
-                          src={ApiService.getRiskChart(chartType)}
-                          width="100%"
-                          height="500"
-                          title="Interactive Risk Chart"
-                          frameBorder="0"
-                        />
-                      ) : (
+                      {chartType === 'bar' && (
                         <img
-                          src={ApiService.getRiskChart(chartType)}
-                          alt={`${chartType} Risk Chart`}
-                          style={{ maxWidth: '100%', height: 'auto', maxHeight: '500px' }}
+                          src={ApiService.getRiskChartUrl()}
+                          alt="Risk Bar Chart"
+                          style={{ maxWidth: '100%', borderRadius: 8 }}
+                        />
+                      )}
+                      {chartType === 'pie' && (
+                        <img
+                          src={ApiService.getRiskPieChartUrl()}
+                          alt="Risk Pie Chart"
+                          style={{ maxWidth: '100%', borderRadius: 8 }}
+                        />
+                      )}
+                      {chartType === 'radar' && (
+                        <img
+                          src={ApiService.getRiskRadarChartUrl()}
+                          alt="Risk Radar Chart"
+                          style={{ maxWidth: '100%', borderRadius: 8 }}
+                        />
+                      )}
+                      {chartType === 'trend' && (
+                        <img
+                          src={ApiService.getRiskTrendChartUrl()}
+                          alt="Risk Trend Chart"
+                          style={{ maxWidth: '100%', borderRadius: 8 }}
+                        />
+                      )}
+                      {chartType === 'interactive' && (
+                        <div
+                          dangerouslySetInnerHTML={{ __html: chartHtml }}
+                          style={{ width: '100%', overflowX: 'auto', borderRadius: 8 }}
                         />
                       )}
                     </Box>
@@ -330,4 +362,4 @@ const DocumentAnalyzerPage = () => {
   );
 };
 
-export default DocumentAnalyzerPage; 
+export default DocumentAnalyzerPage;
